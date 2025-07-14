@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "johan",
+      "email": "johan@correo.com",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "username": "ana",
+      "email": "ana@correo.com",
+      "password": "654321"
+    },
+    {
+      "id": "2d60",
+      "username": "alex1234",
+      "email": "alexvs@correo.com",
+      "password": "alex12345"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1",
+      "title": "Plan del proyecto",
+      "content": "Debemos entregar todas las vistas antes del viernes.\n\nHecho",
+      "userId": 1,
+      "permission": "edit"
+    },
+    {
+      "id": "7eb8",
+      "title": "Mi primera Nota",
+      "content": "Contenido de prueba para primera nota a compartir",
+      "userId": "2d60"
+    }
+  ],
+  "shared": [
+    {
+      "id": "1",
+      "noteId": 1,
+      "sharedWith": 2,
+      "permission": "edit"
+    },
+    {
+      "id": "0531",
+      "noteId": 7,
+      "sharedWith": "1",
+      "permission": "edit"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CrudNote</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+
+  <!-- Barra de navegación -->
+  <header id="navbar-container"></header>
+
+  <!-- Vista principal SPA -->
+  <main class="container py-4">
+    <div id="app-view"></div>
+  </main>
+
+  <!-- Botón de tema -->
+  <div class="position-fixed bottom-0 end-0 m-3">
+    <button id="toggle-theme" class="btn btn-light border">
+      <i class="bi bi-brightness-high"></i>
+    </button>
+  </div>
+
+  <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <!-- Módulos SPA -->
+  <script type="module" src="./utils/theme.js"></script>
+  <script type="module" src="./utils/session.js"></script>
+  <script type="module" src="./utils/middleware.js"></script>
+  <script type="module" src="./components/Navbar.js"></script>
+  <script type="module" src="./router.js"></script>
+</body>
+</html>
