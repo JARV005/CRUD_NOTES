@@ -26,30 +26,31 @@
   </div>
 
   <script type="module">
-    const form = document.getElementById('login-form');
-    const msg = document.getElementById('login-msg');
+  const form = document.getElementById('login-form');
+  const msg = document.getElementById('login-msg');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const identifier = document.getElementById('identifier').value.trim().toLowerCase();
-      const password = document.getElementById('password').value;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const identifier = document.getElementById('identifier').value.trim().toLowerCase();
+    const password = document.getElementById('password').value;
 
-      const res = await fetch('https://crudnotejsonserver.onrender.com/users'); // <-- CAMBIO AQUÍ
-      const users = await res.json();
+    const res = await fetch('https://crudnote-api.onrender.com/users');
+    const users = await res.json();
 
-      const user = users.find(u =>
-        (u.email.toLowerCase() === identifier || u.username.toLowerCase() === identifier)
-        && u.password === password
-      );
+    const user = users.find(u =>
+      (u.email.toLowerCase() === identifier || u.username.toLowerCase() === identifier)
+      && u.password === password
+    );
 
-      if (!user) {
-        msg.textContent = 'Credenciales incorrectas.';
-        return;
-      }
+    if (!user) {
+      msg.textContent = 'Credenciales incorrectas.';
+      return;
+    }
 
-      sessionStorage.setItem('user', JSON.stringify(user));
-      window.location.href = './index.html';
-    });
-  </script>
+    sessionStorage.setItem('user', JSON.stringify(user));
+    window.location.href = './index.html';
+  });
+</script>
+
 </body>
 </html>
