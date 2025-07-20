@@ -1,10 +1,10 @@
 // services/authService.js
 
-const API_URL = 'http://localhost:3000/users';
+const BASE_URL = 'https://crudnote-api.onrender.com';
 
 // Login by username or email + password
 export async function login(identifier, password) {
-  const res = await fetch(API_URL);
+  const res = await fetch(BASE_URL);
   const users = await res.json();
 
   return users.find(user =>
@@ -16,7 +16,7 @@ export async function login(identifier, password) {
 
 // Register new user
 export async function register(userData) {
-  const res = await fetch(API_URL);
+  const res = await fetch(BASE_URL);
   const users = await res.json();
 
   const exists = users.some(user =>
@@ -27,7 +27,7 @@ export async function register(userData) {
     throw new Error('Usuario o correo ya en uso');
   }
 
-  const response = await fetch(API_URL, {
+  const response = await fetch(BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData)

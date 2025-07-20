@@ -3,6 +3,8 @@ import { getUserNotes, deleteNote } from '../services/noteService.js';
 import { getSession } from '../utils/session.js';
 import { renderShareForm } from '../components/ShareForm.js';
 
+const API_URL = 'https://crudnote-api.onrender.com'; 
+
 export async function renderMyNotes() {
   const app = document.getElementById('app-view');
   const user = getSession();
@@ -79,7 +81,6 @@ export async function renderMyNotes() {
       const noteId = e.target.dataset.id;
       const modalBody = document.getElementById('modal-share-body');
       modalBody.innerHTML = renderShareForm(noteId);
-      // Luego de insertar el formulario, enganchar eventos
       attachShareLogic(noteId);
     });
   });
@@ -96,7 +97,7 @@ function attachShareLogic(noteId) {
     const target = document.getElementById('share-to').value.trim().toLowerCase();
     const permission = document.getElementById('share-permission').value;
 
-    const res = await fetch('http://localhost:3000/users');
+    const res = await fetch(`${API_URL}/users`);
     const users = await res.json();
     const receiver = users.find(u =>
       u.email.toLowerCase() === target || u.username.toLowerCase() === target
@@ -112,7 +113,7 @@ function attachShareLogic(noteId) {
       return;
     }
 
-    const check = await fetch(`http://localhost:3000/shared?noteId=${noteId}&sharedWith=${receiver.id}`);
+    const check = await fetch(`${API_URL}/shared?noteId=${noteId}&sharedWith=${receiver.id}`);
     if ((await check.json()).length > 0) {
       msg.innerHTML = `<div class="text-warning">Ya compartiste esta nota con ese usuario.</div>`;
       return;
@@ -124,7 +125,7 @@ function attachShareLogic(noteId) {
       permission
     };
 
-    await fetch('http://localhost:3000/shared', {
+    await fetch(`${API_URL}/shared`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(shareData)

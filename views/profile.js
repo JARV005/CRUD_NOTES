@@ -1,14 +1,16 @@
 // views/profile.js
 import { getSession } from '../utils/session.js';
 
+const API_URL = 'https://crudnote-api.onrender.com'; // ✅ Cambia esta URL a la de tu backend
+
 export async function renderProfile() {
   const app = document.getElementById('app-view');
   const user = getSession();
 
   const [notesRes, sharedRes, usersRes] = await Promise.all([
-    fetch(`http://localhost:3000/notes?userId=${user.id}`),
-    fetch(`http://localhost:3000/shared`),
-    fetch(`http://localhost:3000/users`)
+    fetch(`${API_URL}/notes?userId=${user.id}`),
+    fetch(`${API_URL}/shared`),
+    fetch(`${API_URL}/users`)
   ]);
 
   const notes = await notesRes.json();

@@ -1,10 +1,10 @@
 // services/shareService.js
-const API_URL = 'http://localhost:3000';
+const BASE_URL = 'https://crudnote-api.onrender.com';
 import { getNoteById, updateNote as updateOriginalNote } from './noteService.js';
 
 // Get notes shared with this user
 export async function getSharedNotes(userId) {
-  const sharedRes = await fetch(`${API_URL}/shared?sharedWith=${userId}`);
+  const sharedRes = await fetch(`${BASE_URL}/shared?sharedWith=${userId}`);
   const sharedLinks = await sharedRes.json();
 
   const sharedNotes = [];

@@ -1,21 +1,21 @@
 // services/noteService.js
-const API_URL = 'http://localhost:3000/notes';
+const BASE_URL = 'https://crudnote-api.onrender.com/notes';
 
 // Get notes created by the current user
 export async function getUserNotes(userId) {
-  const res = await fetch(`${API_URL}?userId=${userId}`);
+  const res = await fetch(`${BASE_URL}?userId=${userId}`);
   return res.json();
 }
 
 // Get a single note by ID
 export async function getNoteById(id) {
-  const res = await fetch(`${API_URL}/${id}`);
+  const res = await fetch(`${BASE_URL}/${id}`);
   return res.json();
 }
 
 // Create new note
 export async function createNote(note) {
-  const res = await fetch(API_URL, {
+  const res = await fetch(BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(note)
@@ -25,7 +25,7 @@ export async function createNote(note) {
 
 // Update existing note
 export async function updateNote(id, updatedNote) {
-  const res = await fetch(`${API_URL}/${id}`, {
+  const res = await fetch(`${BASE_URL}/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedNote)
@@ -35,7 +35,7 @@ export async function updateNote(id, updatedNote) {
 
 // Delete note
 export async function deleteNote(id) {
-  return fetch(`${API_URL}/${id}`, {
+  return fetch(`${BASE_URL}/${id}`, {
     method: 'DELETE'
   });
 }
